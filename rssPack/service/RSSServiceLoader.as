@@ -30,6 +30,13 @@ package rssPack.service
 					//Sat, 18 Mar 2017 09:31:41 GMT
 					rssLink.dynamicData = new Date(pagesXML.channel[0].item[i].pubDate);
 					rssLink.id = pagesXML.channel[0].item[i].link ;
+					var description:String = pagesXML.channel[0].item[i].description ;
+					var httpIndex:int = description.indexOf("https") ;
+					if(httpIndex!=-1)
+					{
+						var imageURL:String = description.substring(httpIndex,description.indexOf('"',httpIndex));
+						rssLink.iconURL = imageURL ;
+					}
 					page.links1.push(rssLink);
 				}
 			}
